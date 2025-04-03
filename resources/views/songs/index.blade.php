@@ -22,6 +22,7 @@
 
           <div class="card-footer d-flex justify-content-between">
             <a class="btn btn-warning" href="/songs/{{$song->id}}/edit">Song bearbeiten</a>
+            
             <form action="{{url('/songs', ['id' => $song->id])}}" method="post">
               @csrf
               @method('DELETE')

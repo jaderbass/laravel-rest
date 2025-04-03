@@ -70,7 +70,7 @@ class SongsController extends Controller
      */
     public function edit(string $id)
     {
-        $song = Song::find($id);
+        $song = Song::findOrFail($id);
         $labels = DB::table('labels')->select('id', 'name')->get();
 
         return view('songs.edit', [

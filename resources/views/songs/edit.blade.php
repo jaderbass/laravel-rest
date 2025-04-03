@@ -30,17 +30,17 @@
         <div class="mt-5">
           <button class="btn btn-success" type="submit">Änderung speichern</button>
         </div>
+        
+        {{-- Fehlerausgabe --}}
+        @if ($errors->any())
+          <div class="alert alert-danger mt-5">
+            <ul class="list-group">
+              @foreach ($errors->all() as $error)
+                <li class="list-group-item bg-transparent"> {!! $error !!} </li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
       </div>
     </form>
-
-    {{-- Fehlerausgabe --}}
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-              <li> {!! $error !!} </li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
 @endsection
