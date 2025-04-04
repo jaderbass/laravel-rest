@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LabelsController extends Controller
 {
@@ -48,8 +49,14 @@ class LabelsController extends Controller
     public function show(string $id)
     {
         $label = Label::findOrFail($id);
+        $songs = DB::table('songs')->select('id','title','band','labels_id_ref','created_at','updated_at')->where('labels_id_ref', '=', $id)->get();
 
-        return view('labels.show', ['label' => $label]);
+        if($songs->isEmpty()) $songs = NULL;
+
+        return view('labels.show', [
+            'label' => $label,
+            'songs' => $songs
+        ]);
     }
 
     /**
