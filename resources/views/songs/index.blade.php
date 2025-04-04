@@ -7,7 +7,7 @@
     
     @foreach ($songs as $song)
       <div class="col"> 
-        <div class="card">
+        <div class="card h-100">
 
           <div class="card-header">
             <h5><a href="{{url('/songs', ['id' => $song->id])}}">{{$song->title}}</a></h5>
