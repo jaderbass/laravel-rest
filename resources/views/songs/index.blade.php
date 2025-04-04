@@ -15,8 +15,8 @@
 
           <div class="card-body">
             <p class="card-title">
-              von {{$song->band}}<br>
-              Label: {{$song->name}}
+              von <strong>{{$song->band}}</strong><br>
+              Label: <strong>{{$song->name}}</strong>
             </p>
           </div>
 

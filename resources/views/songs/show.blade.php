@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h2>{{ $song->title }}</h2>
+    <h2>Song: <span style="color: #fd7e14;">{{ $song->title }}</span></h2>
     <p>
       von <b>{{ $song->band }}</b>, <br>
       Label: <b>{{ $song->name }}</b>
