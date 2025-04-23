@@ -12,7 +12,7 @@
           <td class="d-flex">
             <a href="/labels/{{$label->id}}/edit" class="btn btn-warning me-3">Label bearbeiten</a>
 
-            <form action="/labels" method="post">
+            <form action="{{url('/labels', ['id' => $label->id])}}" method="post">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger">Label löschen</button>

@@ -40,7 +40,7 @@ class LabelsController extends Controller
         $label->name = $validatedData['name'];
         $label->save();
 
-        return redirect('/labels');
+        return redirect('/labels')->with('success', 'Das Label <b>&quot;' . $label->name . '&quot;</b> wurde erfolgreich gespeichert.');
     }
 
     /**
@@ -84,16 +84,24 @@ class LabelsController extends Controller
 
         $label->save();
 
-        return redirect('labels');
+        return redirect('/labels')->with('success', 'Das Label <b>&quot;' . $label->name . '&quot;</b> wurde erfolgreich gespeichert.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Label $label)
     {
-        $label = Label::find($id);
+
+        // $label = Label::find($id);
+        // Check if the label is used in any songs
+        if ($label->songs()->count() > 0) {
+            // If it is, do not delete the label and return an error message
+            return redirect('labels')->with('error', 'Das Label <b>&quot;' . $label->name . '&quot;</b> kann nicht gelöscht werden, da noch Songs zugeordnet sind.');
+        }
+        
+        // Delete the label 
         $label->delete();
-        return redirect('labels');
+        return redirect('labels')->with('success', 'Das Label <b>&quot;' . $label->name . '&quot;</b> wurde gelöscht.');
     }
 }

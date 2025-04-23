@@ -48,7 +48,7 @@ class SongsController extends Controller
         $song->labels_id_ref = $validatedData['labels_id_ref'];
         $song->save();
 
-        return redirect('/songs');
+        return redirect('/songs')->with('success', 'Der Song <b>&quot;' . $song->title . '&quot;</b> wurde erfolgreich gespeichert.');
     }
 
     /**
@@ -98,7 +98,7 @@ class SongsController extends Controller
 
         $song->save();
 
-        return redirect('songs');
+        return redirect('/songs')->with('success', 'Der Song <b>&quot;' . $song->title . '&quot;</b> wurde erfolgreich aktualisiert.');
     }
 
     /**
@@ -108,6 +108,6 @@ class SongsController extends Controller
     {
         $song = Song::find($id);
         $song->delete();
-        return redirect('songs');
+        return redirect('songs')->with('success', 'Der Song <b>&quot;' . $song->title . '&quot;</b> wurde erfolgreich gelöscht.');
     }
 }
